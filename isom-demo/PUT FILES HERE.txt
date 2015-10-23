@@ -1,0 +1,7 @@
+copy these files from starcraft to this folder:
+	BrooDat.mpq
+	StarDat.mpq
+	Patch_rt.mpq
+
+that's all!
+run isom-demo.exe, you'll found a new world!
