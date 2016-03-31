@@ -43,8 +43,7 @@ public:
 	BOOL InitIsoMap(VOID);
 	VOID ExitIsoMap(VOID);
 
-//protected:
-public:
+protected:
 
 	static CONST INT CV5_TILE_GROUP_NUM = 1024;
 	static CONST INT DOODAD_REF_MAX = 256;
@@ -97,7 +96,6 @@ protected:
 	BOOL LoadVx4(HANDLE file, UINT mega_num);
 	BOOL GetMegaTile(BUFPTR buf, UINT pitch, UINT mega_no) CONST;
 	BOOL GetMiniTile(BUFPTR buf, UINT pitch, UINT mini_no, BOOL flipped) CONST;
-//	DImage *GetDoodad(LTILEIDX index);
 
 protected:
 
@@ -156,7 +154,7 @@ protected:
 	};
 
 	struct VX4_MINITILE {
-		WORD flipped:1;
+		WORD flipped:1;					/* 是否左右翻转位图 */
 		WORD graphics:15;
 	};
 

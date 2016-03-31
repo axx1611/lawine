@@ -107,38 +107,6 @@ VOID idea_encrypt(VPTR dest, VCPTR src, CONST struct IDEA_KEY *key)
 
 WORD idea_inverse(WORD n)
 {
-#if 0
-	UINT mod1, mod2;
-	INT div1, div2;
-
-	if (n <= 1)
-		return n;
-
-	div1 = 0x10001 / n;
-	mod1 = 0x10001 % n;
-
-	if (mod1 != 1) {
-
-		div2 = n / mod1 * div1 + 1;
-		mod2 = n % mod1;
-
-		while (mod2 != 1) {
-
-			div1 += mod1 / mod2 * div2;
-			mod1 = mod1 % mod2;
-
-			if (mod1 != 1) {
-				div2 += mod2 / mod1 * div1;
-				mod2 = mod2 % mod1;
-			} else {
-				return (WORD)(1 - div1);
-			}
-		}
-		return (WORD)div2;
-	}
-
-	return (WORD)(1 - div1);
-#else
 	INT x, y, d, m, q, t;
 
 	if (!n)
@@ -171,7 +139,6 @@ WORD idea_inverse(WORD n)
 	} while (m);
 
 	return (WORD)x;
-#endif
 }
 
 WORD idea_mul(WORD a, WORD b)
@@ -179,12 +146,10 @@ WORD idea_mul(WORD a, WORD b)
 	UINT c;
 
 	if (!a)
-		/* 16位情况下的简化，本应是0x10001 - b */
-		return 1 - b;
+		return 1 - b;	/* 16位情况下的简化，本应是0x10001 - b */
 
 	if (!b)
-		/* 16位情况下的简化，本应是0x10001 - a */
-		return 1 - a;
+		return 1 - a;	/* 16位情况下的简化，本应是0x10001 - a */
 
 	c = a * b;
 	a = DLoWord(c);

@@ -59,20 +59,24 @@ protected:
 	};
 
 	struct DD2_DATA {
-		WORD dd_no;
-		WORD x;
-		WORD y;
-		BYTE owner;
-		BYTE enable;
+		WORD dd_no;				/* 关联到dddata.bin的索引号 */
+		WORD x;					/* Doodad正中心所在X位置（相对于地图最左侧的像素值） */
+		WORD y;					/* Doodad正中心所在Y位置（相对于地图最上端的像素值） */
+		BYTE owner;				/* 所属玩家，仅对炮台等东西才有意义，0表示中立 */
+		BYTE disabled:1;		/* 炮台不可攻击、门打开等 */
+		BYTE unused:7;
 	};
 
 	struct THG2_DATA {
-		WORD thg_no;
-		WORD x;
-		WORD y;
-		BYTE owner;
+		WORD thg_no;			/* 如果是Unit则为units.dat中的索引号，否则为sprites.dat中的索引号 */
+		WORD x;					/* Doodad正中心所在X位置（相对于地图最左侧的像素值） */
+		WORD y;					/* Doodad正中心所在Y位置（相对于地图最上端的像素值） */
+		BYTE owner;				/* 所属玩家，仅对炮台等东西才有意义，0表示中立 */
 		BYTE unused;
-		WORD flags;
+		WORD unknown:13;
+		WORD unit:1;			/* 是否Unit类型 */
+		WORD flipped:1;			/* 是否左右翻转位图 */
+		WORD disabled:1;		/* 炮台不可攻击、门打开等 */
 	};
 
 	struct VCODE {
