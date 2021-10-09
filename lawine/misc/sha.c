@@ -58,7 +58,7 @@ VOID sha_update(struct SHA_CONTEXT *sha, VCPTR buf)
 		暴雪的SHA-0算法仅处理输入数据大小为64字节的情况，
 		而它的应用也仅限于对64的整倍数的数据进行操作的情况。
 	*/
-	DMemCpy(w, buf, sizeof(DWORD) * 0x40);
+	DMemCpy(w, buf, 0x40);
 
 	for (i = 0x10; i < 0x50; i++)
 		/* 已知SHA-1与SHA-0唯一的不同就是下面这个式子，SHA-1需要在这个计算结果上再做1位的循环左移。 */
